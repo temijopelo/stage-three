@@ -47,7 +47,7 @@ export default function HabitForm({
     <form
       data-testid="habit-form"
       onSubmit={handleSubmit}
-      className="bg-white rounded-xl border border-gray-200 p-4 space-y-4 shadow-sm"
+      className="space-y-4"
       noValidate
     >
       <div>
@@ -115,7 +115,7 @@ export default function HabitForm({
         </select>
       </div>
 
-      <div className="flex gap-2 pt-1">
+      <div className="flex gap-2 pt-2">
         <button
           type="submit"
           data-testid="habit-save-button"

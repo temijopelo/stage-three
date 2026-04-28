@@ -10,7 +10,8 @@
     "test:unit": "vitest run --coverage",
     "test:integration": "vitest run",
     "test:e2e": "playwright test",
-    "test": "npm run test:unit && npm run test:integration && npm run test:e2e"
+    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
+    "deploy": "next build && git add out/ && git commit -m 'Deploy' && git push origin $(git rev-parse --abbrev-ref HEAD):gh-pages"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^6.9.1",

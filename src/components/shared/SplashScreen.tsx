@@ -1,5 +1,3 @@
-import React from "react";
-
 const SplashScreen = () => {
   return (
     <div
@@ -11,9 +9,7 @@ const SplashScreen = () => {
         <h1 className="text-4xl font-bold text-white tracking-tight">
           Habit Tracker
         </h1>
-        <p className="mt-2 text-violet-200 text-sm">
-          Build streaks. Build yourself.
-        </p>
+        <p className="mt-2 text-violet-200 text-sm">Build habits that stick.</p>
         <div className="mt-8 flex gap-1.5 justify-center">
           {[0, 1, 2].map((i) => (
             <div

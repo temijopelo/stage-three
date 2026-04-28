@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Habit } from "@/types/habit";
 import HabitCard from "./HabitCard";
 import HabitForm from "./HabitForm";
+import Modal from "@/components/shared/Modal";
 
 interface Props {
   habits: Habit[];
@@ -47,22 +48,28 @@ export default function HabitList({
         )}
       </div>
 
-      {showForm && (
-        <div className="bg-white rounded-2xl shadow border border-gray-100 p-4 mb-4">
-          <h3 className="font-semibold text-gray-800 mb-3">New habit</h3>
-          <HabitForm
-            onSave={(data) => {
-              onAdd(data);
-              setShowForm(false);
-            }}
-            onCancel={() => setShowForm(false)}
-          />
-        </div>
-      )}
+      {/* Create Habit Modal */}
+      <Modal
+        isOpen={showForm}
+        title="Create new habit"
+        onClose={() => setShowForm(false)}
+      >
+        <HabitForm
+          onSave={(data) => {
+            onAdd(data);
+            setShowForm(false);
+          }}
+          onCancel={() => setShowForm(false)}
+        />
+      </Modal>
 
-      {editingHabit && (
-        <div className="bg-white rounded-2xl shadow border border-gray-100 p-4 mb-4">
-          <h3 className="font-semibold text-gray-800 mb-3">Edit habit</h3>
+      {/* Edit Habit Modal */}
+      <Modal
+        isOpen={!!editingHabit}
+        title="Edit habit"
+        onClose={() => setEditingHabit(null)}
+      >
+        {editingHabit && (
           <HabitForm
             initial={editingHabit}
             onSave={(data) => {
@@ -71,8 +78,8 @@ export default function HabitList({
             }}
             onCancel={() => setEditingHabit(null)}
           />
-        </div>
-      )}
+        )}
+      </Modal>
 
       {habits.length === 0 && !showForm ? (
         <div
