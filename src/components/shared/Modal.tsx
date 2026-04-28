@@ -9,7 +9,12 @@ interface ModalProps {
   children: ReactNode;
 }
 
-export default function Modal({ isOpen, title, onClose, children }: ModalProps) {
+export default function Modal({
+  isOpen,
+  title,
+  onClose,
+  children,
+}: ModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -32,7 +37,10 @@ export default function Modal({ isOpen, title, onClose, children }: ModalProps) 
         >
           {/* Header */}
           <div className="flex items-center justify-between border-b border-gray-200 p-6">
-            <h2 id="modal-title" className="text-lg font-semibold text-gray-900">
+            <h2
+              id="modal-title"
+              className="text-lg font-semibold text-gray-900"
+            >
               {title}
             </h2>
             <button
