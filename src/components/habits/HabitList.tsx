@@ -93,7 +93,7 @@ export default function HabitList({
           </p>
         </div>
       ) : (
-        <ul className="space-y-3">
+        <ul className=" flex flex-col gap-4">
           {habits.map((habit) => (
             <li key={habit.id}>
               <HabitCard

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Link from "next/link.js";
+import { useRouter } from "next/navigation.js";
 import { getUsers, saveSession, saveUsers } from "@/lib/storage";
 import { generateId } from "@/lib/auth";
 import { validateEmail, validatePassword } from "@/lib/validators";
@@ -22,14 +22,12 @@ export default function SignupForm() {
     setEmailError(null);
     setPasswordError(null);
 
-    // Validate email
     const emailValidation = validateEmail(email);
     if (!emailValidation.valid) {
       setEmailError(emailValidation.error);
       return;
     }
 
-    // Validate password
     const passwordValidation = validatePassword(password);
     if (!passwordValidation.valid) {
       setPasswordError(passwordValidation.error);

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation.js";
 import { getSession, clearSession } from "@/lib/storage";
 import { useHabits } from "@/hooks/useHabits";
 import HabitList from "@/components/habits/HabitList";
@@ -43,7 +43,6 @@ export default function DashboardPage() {
       frequency: data.frequency,
     });
     console.log(habits, "kkk");
-    // For testing purposes, we can return the created habit
     return {
       id: generateId(),
       userId: session!.userId,
@@ -77,8 +76,7 @@ export default function DashboardPage() {
     <div data-testid="dashboard-page" className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-lg">🌱</span>
-          <span className="font-bold text-gray-900">Habit Tracker</span>
+          <span className="font-bold text-gray-900">Yami Tracker</span>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-xs text-gray-500 hidden sm:block">
@@ -94,7 +92,7 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      <main className="max-w-lg mx-auto px-4 py-6">
+      <main className="max-w-xl mx-auto px-4 py-6">
         <HabitList
           habits={habits}
           today={today}

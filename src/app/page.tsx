@@ -2,7 +2,7 @@
 
 import SplashScreen from "@/components/shared/SplashScreen";
 import { getSession } from "@/lib/storage";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation.js";
 import { useEffect } from "react";
 export default function Home() {
   const router = useRouter();

@@ -7,7 +7,7 @@ const KEYS = {
   HABITS: "habit-tracker-habits",
 } as const;
 
-// ─── Users ────────────────────────────────────────────────────────────────────
+// Users 
 
 export function getUsers(): User[] {
   if (typeof window === "undefined") return [];
@@ -25,7 +25,7 @@ export function getUserByEmail(email: string): User | undefined {
   return getUsers().find((u) => u.email === email);
 }
 
-// ─── Session ──────────────────────────────────────────────────────────────────
+// Session 
 
 export function getSession(): Session | null {
   if (typeof window === "undefined") return null;
@@ -45,7 +45,7 @@ export function clearSession(): void {
   localStorage.setItem(KEYS.SESSION, JSON.stringify(null));
 }
 
-// ─── Habits ───────────────────────────────────────────────────────────────────
+// Habits 
 
 export function getHabits(): Habit[] {
   if (typeof window === "undefined") return [];

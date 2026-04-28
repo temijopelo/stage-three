@@ -153,7 +153,6 @@ describe("habit form", () => {
       ).toBeInTheDocument();
     });
 
-    // Immutable fields preserved
     expect(updatedHabit!.id).toBe("habit-abc");
     expect(updatedHabit!.userId).toBe("user-1");
     expect(updatedHabit!.createdAt).toBe("2025-01-01T00:00:00.000Z");
@@ -183,12 +182,10 @@ describe("habit form", () => {
 
     await waitFor(() => screen.getByTestId("habit-card-morning-run"));
 
-    // First click shows confirmation, does not delete
     await user.click(screen.getByTestId("habit-delete-morning-run"));
     expect(screen.queryByTestId("habit-card-morning-run")).toBeInTheDocument();
     expect(screen.getByTestId("confirm-delete-button")).toBeInTheDocument();
 
-    // Confirm deletion
     await user.click(screen.getByTestId("confirm-delete-button"));
 
     await waitFor(() => {
@@ -201,7 +198,6 @@ describe("habit form", () => {
   it("toggles completion and updates the streak display", async () => {
     const user = userEvent.setup();
 
-    // Use a wrapper component so state is properly managed across rerenders
     function HabitListWrapper() {
       const [habits, setHabits] = useState<Habit[]>([
         makeHabit({ name: "Meditate" }),
@@ -229,12 +225,10 @@ describe("habit form", () => {
     render(<HabitListWrapper />);
     await waitFor(() => screen.getByTestId("habit-card-meditate"));
 
-    // Streak starts at 0
     expect(screen.getByTestId("habit-streak-meditate").textContent).toContain(
       "0",
     );
 
-    // Toggle complete for TODAY
     await user.click(screen.getByTestId("habit-complete-meditate"));
     await waitFor(() => {
       expect(screen.getByTestId("habit-streak-meditate").textContent).toContain(
@@ -242,7 +236,6 @@ describe("habit form", () => {
       );
     });
 
-    // Toggle again — unmark
     await user.click(screen.getByTestId("habit-complete-meditate"));
     await waitFor(() => {
       expect(screen.getByTestId("habit-streak-meditate").textContent).toContain(

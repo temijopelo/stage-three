@@ -1,7 +1,5 @@
 import { test, expect, Page } from "@playwright/test";
 
-// ── Helpers ────────────────────────────────────────────────────────────────
-
 async function clearStorage(page: Page) {
   await page.evaluate(() => localStorage.clear());
 }
@@ -111,7 +109,6 @@ test.describe("Habit Tracker app", () => {
   test("logs in an existing user and loads only that user's habits", async ({
     page,
   }) => {
-    // Seed user and a habit for that user, plus a habit for another user
     await page.goto("/login");
     await seedUser(page, "alice@example.com", "alicepass");
     await page.evaluate(() => {
@@ -200,7 +197,6 @@ test.describe("Habit Tracker app", () => {
 
     await expect(page.getByTestId("habit-card-morning-pages")).toBeVisible();
 
-    // Reload
     await page.reload();
 
     await expect(page.getByTestId("dashboard-page")).toBeVisible();
@@ -229,23 +225,18 @@ test.describe("Habit Tracker app", () => {
     page,
     context,
   }) => {
-    // First visit to prime the cache
     await page.goto("/");
     await seedUser(page);
     await seedSession(page);
     await page.goto("/dashboard");
     await expect(page.getByTestId("dashboard-page")).toBeVisible();
 
-    // Wait for service worker to install and cache
     await page.waitForTimeout(2000);
 
-    // Go offline
     await context.setOffline(true);
 
-    // Reload — should not hard-crash; app shell should load
     await page.reload({ waitUntil: "domcontentloaded" }).catch(() => {});
 
-    // The page should not be a browser error page
     const body = await page
       .locator("body")
       .textContent()
@@ -253,7 +244,6 @@ test.describe("Habit Tracker app", () => {
     expect(body).not.toContain("ERR_INTERNET_DISCONNECTED");
     expect(body).not.toContain("No internet");
 
-    // Restore online
     await context.setOffline(false);
   });
 });

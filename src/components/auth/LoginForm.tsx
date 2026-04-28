@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Link from "next/link.js";
+import { useRouter } from "next/navigation.js";
 import { getUserByEmail, saveSession } from "@/lib/storage";
 
 export default function LoginForm() {

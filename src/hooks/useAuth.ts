@@ -9,7 +9,7 @@ import {
   getUsers,
   saveUsers,
 } from "@/lib/storage";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation.js";
 
 export function useAuth() {
   const [session, setSession] = useState<Session | null>(null);

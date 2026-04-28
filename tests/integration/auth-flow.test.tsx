@@ -2,13 +2,11 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-// Mock next/navigation
 const mockPush = vi.fn();
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: mockPush, replace: mockPush }),
 }));
 
-// Mock next/link
 vi.mock("next/link", () => ({
   default: ({
     href,
@@ -56,7 +54,6 @@ describe("auth flow", () => {
   it("shows an error for duplicate signup email", async () => {
     const user = userEvent.setup();
 
-    // First signup
     render(<SignupForm />);
     await user.type(
       screen.getByTestId("auth-signup-email"),
@@ -67,7 +64,6 @@ describe("auth flow", () => {
 
     localStorage.setItem("habit-tracker-session", "null");
 
-    // Second signup with same email
     render(<SignupForm />);
     const emailInputs = screen.getAllByTestId("auth-signup-email");
     const passwordInputs = screen.getAllByTestId("auth-signup-password");
@@ -87,7 +83,6 @@ describe("auth flow", () => {
   it("submits the login form and stores the active session", async () => {
     const user = userEvent.setup();
 
-    // Seed a user
     localStorage.setItem(
       "habit-tracker-users",
       JSON.stringify([
