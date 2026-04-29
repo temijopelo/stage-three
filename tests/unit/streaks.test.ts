@@ -1,8 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { calculateCurrentStreak } from "@/lib/streaks";
 
-/* MENTOR_TRACE_STAGE3_HABIT_A91 */
-
 describe("calculateCurrentStreak", () => {
   const today = "2025-01-10";
   const yesterday = "2025-01-09";
@@ -33,9 +31,7 @@ describe("calculateCurrentStreak", () => {
   });
 
   it("breaks the streak when a calendar day is missing", () => {
-    // today + twoDaysAgo (yesterday missing) => streak = 1
     expect(calculateCurrentStreak([today, twoDaysAgo], today)).toBe(1);
-    // today + yesterday but threeDaysAgo (twoDaysAgo missing) => streak = 2
     expect(
       calculateCurrentStreak([today, yesterday, threeDaysAgo], today),
     ).toBe(2);
